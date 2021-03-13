@@ -10,6 +10,7 @@ import { CategoryService } from 'src/app/services/category.service';
 export class CategoryComponent implements OnInit {
   categories: Category[] = [];
   currentCategory: Category;
+  emptyCategory: Category;
   dataLoaded = false;
 
   constructor(private categoryService: CategoryService) {}
@@ -29,8 +30,20 @@ export class CategoryComponent implements OnInit {
     this.currentCategory = category;
   }
 
+  setCurrentCategoryEmpty(){
+    this.currentCategory = this.emptyCategory;
+  }
+
   getCurrentCategoryClass(category: Category){
     if(category==this.currentCategory){
+      return "list-group-item active"
+    }else{
+      return "list-group-item"
+    }
+  }
+
+  getAllCategoryClass(){
+    if(!this.currentCategory){
       return "list-group-item active"
     }else{
       return "list-group-item"
